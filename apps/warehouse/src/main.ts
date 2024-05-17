@@ -9,11 +9,11 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { WAREHOUSE_PORT } from '@warehouse/config';
+import { EventModule } from './app/event/event.module';
 
 async function bootstrap() {
-  const port = 5000;
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule,
+  const app = await NestFactory.create(AppModule);
+  app.connectMicroservice<MicroserviceOptions>(
     {
       transport: Transport.TCP,
       options: {
@@ -21,10 +21,14 @@ async function bootstrap() {
       }
     },
   );
-  await app.listen();
-  Logger.log(
-    `🚀 Application is running on port:${port}`
-  );
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.REDIS,
+    options: {
+      host: 'localhost',
+      port: 6379,
+    },
+  });
+  await app.startAllMicroservices();
 }
 
 bootstrap();
