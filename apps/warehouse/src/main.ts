@@ -8,6 +8,7 @@ import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { WAREHOUSE_PORT } from '@warehouse/config';
 
 async function bootstrap() {
   const port = 5000;
@@ -16,7 +17,7 @@ async function bootstrap() {
     {
       transport: Transport.TCP,
       options: {
-        port
+        port: WAREHOUSE_PORT
       }
     },
   );
