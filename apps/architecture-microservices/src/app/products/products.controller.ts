@@ -16,14 +16,17 @@ export class ProductController {
 
   @Get(':id')
   async getById(@Param('id') id: string) {
-    const result = await this.warehouseClient.test();
-    console.log(result);
+    const { quantity } = await this.warehouseClient.getStockQuantity(id);
 
-    const product = this.productSrv.getById(id);
+
+    const product = await this.productSrv.getById(id);
     if (!product) {
       throw new NotFoundException();
     }
 
-    return product;
+    return {
+      ...product,
+      quantity
+    };
   }
 }

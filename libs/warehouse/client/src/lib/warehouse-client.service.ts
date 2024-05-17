@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { ClientProxy } from "@nestjs/microservices";
 import { lastValueFrom } from "rxjs";
-import { WarehouseCommands } from '@warehouse/config';
+import { GetStockQuantityInput, GetStockQuantityResult, WarehouseCommands } from '@warehouse/config';
 
 @Injectable()
 export class WarehouseClient {
@@ -9,5 +9,9 @@ export class WarehouseClient {
 
   async test() {
     return lastValueFrom(this.client.send(WarehouseCommands.test, {test: 'ciao'}));
+  }
+
+  async getStockQuantity(productId: string) {
+    return lastValueFrom(this.client.send<GetStockQuantityResult, GetStockQuantityInput>(WarehouseCommands.getStockQuantity, { productId }));
   }
 }
