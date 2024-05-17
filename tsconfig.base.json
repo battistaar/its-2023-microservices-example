@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@warehouse/client": ["libs/warehouse/client/src/index.ts"],
+      "@warehouse/config": ["libs/warehouse/config/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
