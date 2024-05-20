@@ -1,7 +1,7 @@
 {
-  "name": "architecture-microservices",
+  "name": "main-api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/architecture-microservices/src",
+  "sourceRoot": "apps/main-api/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -9,14 +9,14 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "architecture-microservices:build"
+        "buildTarget": "main-api:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "architecture-microservices:build:development"
+          "buildTarget": "main-api:build:development"
         },
         "production": {
-          "buildTarget": "architecture-microservices:build:production"
+          "buildTarget": "main-api:build:production"
         }
       }
     }

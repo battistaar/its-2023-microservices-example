@@ -34,7 +34,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/architecture-microservices-e2e/**/*"]
+      "exclude": ["apps/main-api-e2e/**/*"]
     }
   ],
   "targetDefaults": {
