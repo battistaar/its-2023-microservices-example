@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@core/event-utils": ["libs/utils/event-utils/src/index.ts"],
       "@warehouse/client": ["libs/warehouse/client/src/index.ts"],
       "@warehouse/config": ["libs/warehouse/config/src/index.ts"]
     }

@@ -12,7 +12,6 @@ export class WarehouseClient {
   }
 
   async getStockQuantity(productId: string) {
-    console.log('test');
     return lastValueFrom(this.client.send<GetStockQuantityResult, GetStockQuantityInput>(WarehouseCommands.getStockQuantity, { productId }));
   }
 }
