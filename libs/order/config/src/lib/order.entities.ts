@@ -21,3 +21,12 @@ export class OrderEvent {
   shipmentInfo!: ShipmentInfo;
   status!: string;
 }
+
+export class Order {
+  id!: string;
+  userId!: string;
+  items!: CartItem[];
+  paymentInfo!: PaymentInfo;
+  shipmentInfo!: ShipmentInfo;
+  status!: string;
+}
