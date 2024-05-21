@@ -1,1 +1,11 @@
 SHIPMENT EX
+
+EVENTS:
+enter_status_payed: pagamento anadato a buon fine - order -> shipment
+shipment_start: noi mandiamo un messaggio che dobbiamo preparare la spedizione - shipment -> order, warehouse
+
+items_preparing: noi riceviamo un messaggio che gli elementi stanno per essere preparati - warehouse -> shipment 
+shipment_preparing: noi mandiamo un messaggio che la spedizione sta per essere preparata - shipment -> order
+
+items_shiped: noi riceviamo un messaggio che gli elementi sono pronti - warehouse -> shipment 
+shipment_shiped: noi mandiamo un messaggio che la spedizione sta è stata spedita - shipment -> order
