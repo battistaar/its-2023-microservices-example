@@ -19,6 +19,9 @@
       "@order/config": ["libs/order/config/src/index.ts"],
       "@order/event-client": ["libs/order/event-client/src/index.ts"],
       "@order/events": ["libs/order/events/src/index.ts"],
+      "@shipment/config": ["libs/shipment/config/src/index.ts"],
+      "@shipment/event-client": ["libs/shipment/event-client/src/index.ts"],
+      "@shipment/events": ["libs/shipment/events/src/index.ts"],
       "@warehouse/client": ["libs/warehouse/client/src/index.ts"],
       "@warehouse/config": ["libs/warehouse/config/src/index.ts"]
     }
