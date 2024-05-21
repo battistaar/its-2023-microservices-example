@@ -23,14 +23,14 @@ export interface MessagesDefinition {
 
 type EventHandler<P, R> = (payload: P) => Promise<R>;
 
-type IEventPattern<T> = (
+export type IEventPattern<T> = (
   // eslint-disable-next-line @typescript-eslint/ban-types
   target: Object,
   propertyKey: string | symbol,
   descriptor: TypedPropertyDescriptor<EventHandler<T, void>>,
 ) => TypedPropertyDescriptor<EventHandler<T, void>> | void
 
-type IMessagePattern<T, R> = (
+export type IMessagePattern<T, R> = (
   // eslint-disable-next-line @typescript-eslint/ban-types
   target: Object,
   propertyKey: string | symbol,
@@ -42,7 +42,7 @@ export const clientEventDecoratorFactory = (definitions: EventsDefinition, prefi
     if (!Object.values<EventConfig>(definitions).includes(event)) {
       throw new Error('Invalid event definition')
     }
-    return applyDecorators(OriginalEventPattern({cmd: `${prefix}_${event.identifier}`})) as IEventPattern<P>
+    return applyDecorators(OriginalEventPattern(`${prefix}_${event.identifier}`)) as IEventPattern<P>
   }
 }
 

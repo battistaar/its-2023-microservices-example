@@ -3,13 +3,11 @@
  * This is only a minimal backend to get started.
  */
 
-import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { WAREHOUSE_PORT } from '@warehouse/config';
-import { EventModule } from './app/event/event.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
