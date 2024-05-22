@@ -33,9 +33,10 @@ export class ShipmentEvent {
 }
 
 export class Shipment {
-  shipmentId!: string;
+  id!: string;
   orderId!: string;
   items!: CartItem[];
+  paymentInfo!: PaymentInfo;
   shipmentInfo!: ShipmentInfo;
   status!: string;
 }
