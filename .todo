@@ -1,0 +1,43 @@
+SHIPMENT EX
+
+EVENTS:
+enter_status_payed: pagamento anadato a buon fine - order -> shipment 
+{ 
+  ci arriva tutti i dettagli dell'ordine 
+}
+shipment_start: noi mandiamo un evento che dobbiamo preparare la spedizione - shipment -> order, warehouse
+orderd: {
+  mandiamo che abbiamo ricevuto l'ordine, specificando l'id dell'ordine stesso e 
+  inviamo l'id della spedizione generato da noi
+},
+warehouse: {
+  inviamo che dobbiamo preparare una spedizione,
+  dettagli dell'ordine { indirizzo, items },
+  inviamo l'id della spedizione generato da noi
+}
+
+items_preparing: noi riceviamo un evento che gli elementi stanno per essere preparati - warehouse -> shipment 
+{
+  warehouse id,
+  shipment id,
+  stato (in preparazione)
+}
+shipment_preparing: noi mandiamo un evento che la spedizione sta per essere preparata - shipment -> order
+{
+  che la scatola è pronta
+  id ordine
+  id spedizione
+}
+
+items_shiped: noi riceviamo un evento che gli elementi sono stati spediti - warehouse -> shipment
+{
+  warehouse id,
+  shipment id,
+  stato (spedito)
+}
+shipment_shiped: noi mandiamo un evento che la spedizione è stata spedita - shipment -> order
+{
+  spedizione spedita
+  id ordine
+  id spedizione
+}
