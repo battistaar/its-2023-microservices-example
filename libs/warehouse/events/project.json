@@ -1,5 +1,5 @@
 {
-  "name": "events",
+  "name": "warehouse-events",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/warehouse/events/src",
   "projectType": "library",

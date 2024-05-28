@@ -1,5 +1,5 @@
 {
-  "name": "event-client",
+  "name": "warehouse-event-client",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/warehouse/event-client/src",
   "projectType": "library",
