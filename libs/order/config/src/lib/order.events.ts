@@ -4,4 +4,5 @@ export enum OrderStatusEvents {
   SHIPPING = 'order_status_shipping',
   SHIPPED = 'order_status_shipped',
   DELIVERED = 'order_status_delivered',
+  ALL = 'order_status_*' // method to listen to all events and based on the status send a certain notitication
 }

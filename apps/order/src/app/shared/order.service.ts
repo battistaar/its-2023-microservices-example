@@ -41,4 +41,47 @@ export class OrderService {
     }
     this.orderEventsSrv.sendStatusChange(OrderStatusEvents.PAYED, eventData);
   }
+
+  async setStatusToShipping(id: string) {
+    const order = this.orders.find(o => o.id === id);
+    if (!order) {
+      throw new Error('order not found');
+    }
+    order.status = 'shipping';
+
+    const eventData = {
+      orderId: id,
+      ...order
+    }
+    this.orderEventsSrv.sendStatusChange(OrderStatusEvents.SHIPPING, eventData);
+  }
+
+  async setStatusShipped(id: string) {
+    const order = this.orders.find(o => o.id === id);
+    if (!order) {
+      throw new Error('order not found');
+    }
+    order.status = 'shipped';
+
+    const eventData = {
+      orderId: id,
+      ...order
+    }
+    this.orderEventsSrv.sendStatusChange(OrderStatusEvents.SHIPPED, eventData);
+  }
+  
+  async setStatusDelivered(id:string) {
+    const order = this.orders.find(o => o.id === id);
+    if (!order) {
+      throw new Error('order not found');
+    }
+    order.status = 'delivered';
+
+    const eventData = {
+      orderId: id,
+      ...order
+    }
+
+    this.orderEventsSrv.sendStatusChange(OrderStatusEvents.DELIVERED, eventData);
+  }
 }
