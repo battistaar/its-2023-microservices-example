@@ -1,5 +1,5 @@
 
-class ShipmentInfo {
+export class ShipmentInfo {
   address: any;
 }
 
@@ -8,7 +8,7 @@ class PaymentInfo {
   transactionId!: string;
 }
 
-class CartItem {
+export class CartItem {
   productId!: string;
   quantity!: number;
 }
