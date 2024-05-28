@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { NotificationController } from './notification.controller';
 import { REDIS_HOST, REDIS_PORT } from '@order/config';
-import { PaymentEventsService } from './payment-events.service';
+import { NotificationService } from '../shared/notification.service';
 
 @Module({
   imports: [
     ClientsModule.register([
       {
-        name: 'PAYMENT_SERVICE',
+        name: 'ORDER_SERVICE',
         transport: Transport.REDIS,
         options: {
           host: REDIS_HOST,
@@ -16,11 +17,8 @@ import { PaymentEventsService } from './payment-events.service';
       }
     ])
   ],
-  providers: [PaymentEventsService],
-  exports: [PaymentEventsService],
+  controllers: [NotificationController],
+  providers: [NotificationService],
+  exports: [NotificationService],
 })
-export class PaymentEventsModule {
-
-
-
-}
+export class NotificationModule {}

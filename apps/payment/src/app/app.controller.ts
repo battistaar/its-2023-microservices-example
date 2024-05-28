@@ -1,6 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 
 import { AppService } from './app.service';
+import { OrderStatusEvent } from '@order/event-client';
+import { OrderEvent, OrderStatusEvents } from '@order/config';
 
 @Controller()
 export class AppController {
@@ -9,5 +11,10 @@ export class AppController {
   @Get()
   getData() {
     return this.appService.getData();
+  }
+
+  @OrderStatusEvent(OrderStatusEvents.START)
+  async onStart(payload: OrderEvent) {
+    await this.appService.startPAyment(payload);
   }
 }
