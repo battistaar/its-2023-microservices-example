@@ -3,12 +3,7 @@ export class ShipmentInfo {
   address: any;
 }
 
-class PaymentInfo {
-  data: any;
-  transactionId!: string;
-}
-
-export class CartItem {
+class CartItem {
   productId!: string;
   quantity!: number;
 }
@@ -16,8 +11,8 @@ export class CartItem {
 export class ShipmentEvent {
   shipmentId!: string;
   orderId!: string;
+  userId!: string;
   items!: CartItem[];
-  paymentInfo!: PaymentInfo;
   shipmentInfo!: ShipmentInfo;
   status!: string;
 }
@@ -25,8 +20,8 @@ export class ShipmentEvent {
 export class Shipment {
   id!: string;
   orderId!: string;
+  userId!: string;
   items!: CartItem[];
-  paymentInfo!: PaymentInfo;
   shipmentInfo!: ShipmentInfo;
   status!: string;
 }

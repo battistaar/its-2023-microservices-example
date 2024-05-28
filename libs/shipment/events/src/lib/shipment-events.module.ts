@@ -18,4 +18,4 @@ import { REDIS_HOST, REDIS_PORT } from '@order/config';
   providers: [],
   exports: [],
 })
-export class ShipmentEventsModule {}
+export class ShipmentEventsModuleClient {}
