@@ -81,6 +81,7 @@ export class OrderService {
       orderId: id,
       ...order
     }
+
     this.orderEventsSrv.sendStatusChange(OrderStatusEvents.DELIVERED, eventData);
   }
 }

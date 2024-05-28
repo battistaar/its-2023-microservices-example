@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@architecture-microservices/Notification": [
+        "libs/notification/src/index.ts"
+      ],
       "@core/event-utils": ["libs/utils/event-utils/src/index.ts"],
       "@order/config": ["libs/order/config/src/index.ts"],
       "@order/event-client": ["libs/order/event-client/src/index.ts"],
