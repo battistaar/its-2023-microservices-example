@@ -10,4 +10,5 @@ export class PaymentEventsService {
     console.log(`pay_${event}`)
     this.paymentClient.emit(`pay_${event}`, data);
   }
+
 }
