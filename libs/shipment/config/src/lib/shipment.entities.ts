@@ -1,13 +1,3 @@
-// import {OrderEvent} from 'libs/order/config/src/lib/order.entities'
-
-// export class ShipmentEvent  {
-//     // orderId: string;
-//     items!: ;
-//     paymentInfo: PaymentInfo;
-//     shipmentInfo: ShipmentInfo;
-//     status: string;
-
-// }
 
 class ShipmentInfo {
   address: any;

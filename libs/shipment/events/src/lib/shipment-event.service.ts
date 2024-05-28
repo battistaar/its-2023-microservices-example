@@ -9,7 +9,6 @@ export class ShipmentEventsService {
   ) {}
 
   sendStatusChange(event: ShipmentStatusEvents, data: ShipmentEvent) {
-    console.log(`ord_${event}`);
-    this.shipmentClient.emit(`shipmnt_${event}`, data);
+    this.shipmentClient.emit(`shipment_${event}`, data);
   }
 }
