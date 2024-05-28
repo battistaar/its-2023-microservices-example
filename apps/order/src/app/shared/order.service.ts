@@ -1,45 +1,44 @@
+import { Order, OrderStatusEvents } from '@order/config';
 import { Injectable } from "@nestjs/common";
-import { Order, OrderStatusEvents } from "@order/config";
-import { OrderStatusEvent } from "@order/event-client";
-import { OrderEventsService } from "@order/events";
+import { OrderEventsService } from '@order/events';
 
 @Injectable()
 export class OrderService {
-    constructor(private orderEventsSrv: OrderEventsService) { }
+  constructor(protected orderEventsSrv: OrderEventsService) {}
 
-  private orders: Order[]= [
-    {
-      id: 'ord1',
-      userId: 'user10',
-      items: [
-        {
-          productId: 'prod3',
-          quantity: 2,
-        },
-      ],
-      paymentInfo: {
-        method: 'card',
-        data: { number: '12345' },
-        transactionId: null,
-      },
-      shipmentInfo: { address: { city: 'Vicenza', cap: 36100 } },
-      status: 'pending',
-    }
-  ];
+  private orders: Order[] = [{
+    id: 'order1',
+    items: [{productId: 'prod1', quantity: 3}],
+    paymentInfo: {method: 'card', data: {number: '12345'}, transactionId: null},
+    shipmentInfo: {address: {city: 'Vicenza', cap: 36100}},
+    userId: 'user10',
+    status: 'pending'
+  }];
 
   async confirmOrder(id: string) {
-   
+    const order = this.orders.find(o => o.id === id);
+    if (!order) {
+      throw new Error('order not found');
+    }
+    order.status = 'confirmed';
+    const eventData = {
+      orderId: id,
+      ...order
+    }
+    this.orderEventsSrv.sendStatusChange(OrderStatusEvents.START, eventData);
   }
-
 
   async setStatusPayed(id: string) {
     const order = this.orders.find(o => o.id === id);
-
     if (!order) {
-        throw new Error('Order not found');
+      throw new Error('order not found');
     }
     order.status = 'payed';
 
-    this.orderEventsSrv.sendStatusChange(OrderStatusEvents.PAYED, order);
+    const eventData = {
+      orderId: id,
+      ...order
+    }
+    this.orderEventsSrv.sendStatusChange(OrderStatusEvents.PAYED, eventData);
   }
 }
