@@ -31,6 +31,6 @@ export const WarehouseMessagesDefinitions = {
 
 const prefix = 'wh';
 
-export const WarehouseEvent = clientEventDecoratorFactory(WarehouseEventsDefinitions, prefix);
+//sexport const WarehouseEvent = clientEventDecoratorFactory(WarehouseEventsDefinitions, prefix);
 
 export const WarehouseMessage = clientMessageDecoratorFactory(WarehouseMessagesDefinitions, prefix);
