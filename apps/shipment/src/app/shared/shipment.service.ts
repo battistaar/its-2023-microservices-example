@@ -1,6 +1,4 @@
-import { Order, OrderStatusEvents } from '@order/config';
 import { Injectable } from "@nestjs/common";
-import { OrderEventsService } from '@order/events';
 import { ShipmentEventsService } from '@shipment/events';
 import { Shipment, ShipmentStatusEvents } from '@shipment/config';
 
@@ -19,7 +17,7 @@ export class ShipmentService {
     }]
 
     async startShipment(id: string){
-        const shipment = this.shimpents.find(ship => ship.id === id)
+        const shipment = this.shimpents.find(ship => ship.orderId === id)
 
         if(!shipment){
             throw new Error('shipment not found')
@@ -27,7 +25,8 @@ export class ShipmentService {
         shipment.status = 'start'
 
         const eventData = {
-            shipmentId : id,
+            orderId: id,
+            shipmentId: shipment.id,
             ...shipment
         }
         this.shipmentEventsSrv.sendStatusChange(ShipmentStatusEvents.START, eventData)
