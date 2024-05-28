@@ -1,0 +1,19 @@
+{
+  "name": "event-client",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/warehouse/event-client/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/warehouse/event-client",
+        "main": "libs/warehouse/event-client/src/index.ts",
+        "tsConfig": "libs/warehouse/event-client/tsconfig.lib.json",
+        "assets": ["libs/warehouse/event-client/*.md"]
+      }
+    }
+  }
+}

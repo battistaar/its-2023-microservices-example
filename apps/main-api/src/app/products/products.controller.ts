@@ -1,6 +1,6 @@
 import { Controller, Get, NotFoundException, Param } from "@nestjs/common";
 import { ProductService } from "./product.service";
-import { WarehouseClient } from "@warehouse/client";
+import { WarehouseClient } from "@warehouse/message-client";
 
 @Controller('products')
 export class ProductController {
