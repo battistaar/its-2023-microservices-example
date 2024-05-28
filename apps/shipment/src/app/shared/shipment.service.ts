@@ -34,14 +34,15 @@ export class ShipmentService {
     }
 
     async preperingShipment(id: string){
-        const shipment = this.shimpents.find(ship => ship.id === id)
+        const shipment = this.shimpents.find(ship => ship.orderId === id)
         if(!shipment){
             throw new Error('shipment not found')
         }
         shipment.status = 'prepering'
 
         const eventData  ={
-            shipmentId: id,
+            orderId: id,
+            shipmentId: shipment.id,
             ...shipment
         }
 
@@ -49,7 +50,7 @@ export class ShipmentService {
     }
 
     async shippedShipment(id: string){
-        const shipment = this.shimpents.find(ship => ship.id === id)
+        const shipment = this.shimpents.find(ship => ship.orderId === id)
         
         if(!shipment){
             throw new Error('shipment not found')
@@ -57,10 +58,29 @@ export class ShipmentService {
         shipment.status = 'shipped'
 
         const eventData  ={
-            shipmentId: id,
+            orderId: id,
+            shipmentId: shipment.id,
             ...shipment
         }
 
         this.shipmentEventsSrv.sendStatusChange(ShipmentStatusEvents.SHIPPED, eventData)
+    }
+
+
+    async deliveredShipment(id: string){
+        const shipment = this.shimpents.find(ship => ship.id === id)
+
+        if(!shipment){
+            throw new Error('shipment not found')
+        }
+        shipment.status = 'delivered'
+
+        const eventData  ={
+            shipmentId: id,
+            ...shipment
+        }
+
+        this.shipmentEventsSrv.sendStatusChange(ShipmentStatusEvents.DELIVERED, eventData)
+
     }
 }
