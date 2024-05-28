@@ -6,9 +6,10 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from './app/app.module';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { getOrderTransportConfig } from '@order/event-client';
+import { getWarehouseTransportConfig } from '@warehouse/event-client';
+import { AppModule } from './app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,6 +17,7 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;
   app.connectMicroservice<MicroserviceOptions>(getOrderTransportConfig());
+  app.connectMicroservice<MicroserviceOptions>(getWarehouseTransportConfig());
   await app.startAllMicroservices();
   console.log("starting on ", port)
   await app.listen(port);

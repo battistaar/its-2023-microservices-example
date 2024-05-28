@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ProductController } from "./products.controller";
 import { ProductService } from "./product.service";
-import { WarehouseClientModule } from '@warehouse/client';
+import { WarehouseClientModule } from '@warehouse/message-client';
 
 @Module({
   imports: [
