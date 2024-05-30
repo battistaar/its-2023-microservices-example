@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { NotificationModule } from './api/notification.module';
 
 @Module({
-  imports: [AppController, NotificationModule],
+  imports: [NotificationModule],
   controllers: [AppController],
   providers: [AppService],
 })

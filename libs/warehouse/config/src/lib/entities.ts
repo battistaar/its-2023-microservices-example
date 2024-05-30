@@ -1,11 +1,18 @@
-import { CartItem, ShipmentInfo } from "@shipment/config";
+export class ShipmentInfo {
+  address: any;
+}
+
+class OrderItem {
+  productId!: string;
+  quantity!: number;
+}
 
 export class WarehouseItem {
     warehouseId!: string;
     orderId!: string;
-    items!: CartItem[];
+    items!: OrderItem[];
     shipmentId!: string;
-    shipmentInfo!: ShipmentInfo; 
+    shipmentInfo!: ShipmentInfo;
     status!: string;
 }
 

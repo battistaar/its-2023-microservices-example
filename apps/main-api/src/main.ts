@@ -22,7 +22,7 @@ async function bootstrap() {
   console.log("starting on ", port)
   await app.listen(port);
   Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    `🚀 MainAPI is running on: http://localhost:${port}/${globalPrefix}`
   );
 }
 

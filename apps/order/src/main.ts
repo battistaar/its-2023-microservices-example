@@ -26,7 +26,7 @@ async function bootstrap() {
   const port = process.env.ORDER_API_PORT || 3000;
   await app.listen(port);
   Logger.log(
-    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+    `🚀 Order is running on: http://localhost:${port}/${globalPrefix}`
   );
 }
 

@@ -2,7 +2,7 @@ import { PaymentStatusEvent } from '@event/client';
 import { Controller } from '@nestjs/common';
 import { PaymentEvent, PaymentEventEntity } from '@payment/config';
 import { ShipmentEvent, ShipmentStatusEvents } from '@shipment/config';
-import { ShipmanetStatusEvent } from '@shipment/event-client';
+import { ShipmentStatusEvent } from '@shipment/event-client';
 import { OrderService } from '../shared/order.service';
 
 @Controller()
@@ -16,26 +16,26 @@ export class OrderEventsController {
     this.orderService.setStatusPayed(payload.orderId);
   }
 
-  @ShipmanetStatusEvent(ShipmentStatusEvents.START)
+  @ShipmentStatusEvent(ShipmentStatusEvents.START)
   async shipmentStart(payload: ShipmentEvent) {
     console.log('Shipment Start', payload);
 
     this.orderService.setStatusToShipping(payload.orderId);
   }
 
-  @ShipmanetStatusEvent(ShipmentStatusEvents.PREP)
+  @ShipmentStatusEvent(ShipmentStatusEvents.PREP)
   async shipmentPreparing(payload: ShipmentEvent) {
     console.log('Shipment Preparing', payload);
   }
 
-  @ShipmanetStatusEvent(ShipmentStatusEvents.SHIPPED)
+  @ShipmentStatusEvent(ShipmentStatusEvents.SHIPPED)
   async shipmentShipped(payload: ShipmentEvent) {
     console.log('Shipment Shipped', payload);
 
     this.orderService.setStatusShipped(payload.orderId);
   }
 
-  @ShipmanetStatusEvent(ShipmentStatusEvents.DELIVERED)
+  @ShipmentStatusEvent(ShipmentStatusEvents.DELIVERED)
   async shipmentDelivered(payload: ShipmentEvent) {
     console.log('Shipment Delivered', payload);
 
