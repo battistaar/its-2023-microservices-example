@@ -7,7 +7,7 @@ export class OrderEventsService {
   constructor(@Inject('ORDER_SERVICE') protected orderClient: ClientProxy) {}
 
   sendStatusChange(event: OrderStatusEvents, data: OrderEvent) {
-    console.log(`ord_${event}`)
+    console.log(`ORDER: sending event: ord_${event}`)
     this.orderClient.emit(`ord_${event}`, data);
   }
 }

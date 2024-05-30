@@ -4,14 +4,14 @@ import { Shipment, ShipmentStatusEvents } from '@shipment/config';
 
 @Injectable()
 export class ShipmentService {
-  
+
     constructor(protected shipmentEventsSrv: ShipmentEventsService){}
 
     private shimpents: Shipment[] = [{
         id: 'shipment1',
         orderId: 'order1',
         userId: 'user19',
-        items: [{productId: 'prod1', quantity: 5}],
+        items: [{productId: '1', quantity: 5}],
         shipmentInfo: {address: {city: 'Vicenza', cap: 36100, via: 'via delle scimmie, 7'}},
         status: 'pending'
     }]
@@ -30,7 +30,7 @@ export class ShipmentService {
             ...shipment
         }
         this.shipmentEventsSrv.sendStatusChange(ShipmentStatusEvents.START, eventData)
-        
+
     }
 
     async preperingShipment(id: string){
@@ -51,7 +51,7 @@ export class ShipmentService {
 
     async shippedShipment(id: string){
         const shipment = this.shimpents.find(ship => ship.orderId === id)
-        
+
         if(!shipment){
             throw new Error('shipment not found')
         }

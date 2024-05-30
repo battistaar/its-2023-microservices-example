@@ -23,11 +23,13 @@ export class WarehouseService {
   protected workItems: WarehouseItem[] = [];
 
   async getStockQuantity(productId: string) {
+
     const product = this.products.find((p) => p.id === productId);
     return product.quantity;
   }
 
   async unloadStock(productId: string, quantity: number) {
+    console.log(productId);
     const product = this.products.find((p) => p.id === productId);
     product.quantity -= quantity;
 
@@ -35,7 +37,7 @@ export class WarehouseService {
   }
 
   async addWorkItem(payload: ShipmentEvent) {
-    
+
     const warehouseItem: WarehouseItem = {
       warehouseId: randomStringGenerator(),
       orderId: payload.orderId,
@@ -48,7 +50,7 @@ export class WarehouseService {
     payload.items.forEach((item) => {
       this.unloadStock(item.productId, item.quantity);
     })
-
+    console.log(warehouseItem);
     this.workItems.push(warehouseItem);
   }
 
@@ -61,7 +63,7 @@ export class WarehouseService {
   async shippedOrder(warehouseId: string) {
     const item = this.workItems.find((i) => i.warehouseId === warehouseId);
     item.status = 'shipped';
-    
+
     const warehouseEvent: WarehouseEvent = { warehouseId: item.warehouseId, orderId: item.orderId, shipmentInfo: item.shipmentInfo, status: item.status };
 
     this.warehouseEventSrv.sendStatusChange(ItemsStatusEvent.SHIPPED, warehouseEvent);

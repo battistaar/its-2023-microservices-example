@@ -8,7 +8,7 @@ export class OrderService {
 
   private orders: Order[] = [{
     id: 'order1',
-    items: [{productId: 'prod1', quantity: 3}],
+    items: [{productId: '1', quantity: 3}],
     paymentInfo: {method: 'card', data: {number: '12345'}, transactionId: null},
     shipmentInfo: {address: {city: 'Vicenza', cap: 36100}},
     userId: 'user10',
@@ -69,7 +69,7 @@ export class OrderService {
     }
     this.orderEventsSrv.sendStatusChange(OrderStatusEvents.SHIPPED, eventData);
   }
-  
+
   async setStatusDelivered(id:string) {
     const order = this.orders.find(o => o.id === id);
     if (!order) {

@@ -7,7 +7,7 @@ export class PaymentEventsService {
   constructor(@Inject('PAYMENT_SERVICE') protected paymentClient: ClientProxy) {}
 
   sendStatusChange(event: PaymentEvent, data: PaymentEventEntity) {
-    console.log(`pay_${event}`)
+    console.log(`PAYMENT: sending event: pay_${event}`)
     this.paymentClient.emit(`pay_${event}`, data);
   }
 

@@ -15,6 +15,7 @@ export class AppController {
 
   @OrderStatusEvent(OrderStatusEvents.START)
   async onStart(payload: OrderEvent) {
+    console.log(`PAYMENT: received ${OrderStatusEvents.START}`)
     await this.appService.startPAyment(payload);
   }
 }

@@ -21,7 +21,7 @@ export class ShipmentEventsController {
 
   @ItemsStatusEvents(ItemsStatusEvent.SHIPPED)
   async onItemsShipped(payload: WarehouseEvent){
-    return this.shipmentSrv.preperingShipment(payload.orderId)
+    return this.shipmentSrv.shippedShipment(payload.orderId)
   }
-  
+
 }

@@ -9,6 +9,7 @@ export class WarehouseEventsController {
 
     @ShipmentStatusEvent(ShipmentStatusEvents.START)
     async onStart(payload: ShipmentEvent) {
-        this.warehouseSrv.addWorkItem(payload);
+      console.log(`WAREHOUSE: received event: ${ShipmentStatusEvents.START}`);
+      this.warehouseSrv.addWorkItem(payload);
     }
 }

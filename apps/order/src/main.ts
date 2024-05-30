@@ -7,21 +7,15 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { OrderModule } from './app/order.module';
-import { Transport } from '@nestjs/microservices';
+import { getOrderTransportConfig } from '@shipment/event-client';
 
 async function bootstrap() {
   const app = await NestFactory.create(OrderModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
 
-  app.connectMicroservice({
-    transport: Transport.KAFKA,
-    options: {
-      client: {
-        brokers: ['localhost:9092'],
-      }
-    }
-  })
+  app.connectMicroservice(getOrderTransportConfig())
+  await app.startAllMicroservices();
 
   const port = process.env.ORDER_API_PORT || 3000;
   await app.listen(port);

@@ -9,6 +9,6 @@ export class OrderApiController {
   @Post(':id/confirm')
   async confirmOrder(@Param('id') id: string) {
     await this.orderSrv.confirmOrder(id);
-    return {orderId: 'test'};
+    return {orderId: id};
   }
 }
